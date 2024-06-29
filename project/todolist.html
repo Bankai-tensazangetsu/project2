@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>To-Do List</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        padding: 20px;
+        background-color: #123;
+    }
+    #todoList {
+        list-style-type: none;
+        padding: 0;
+    }
+    .todoItem {
+        background-color: #fff;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+    .removeButton {
+        background-color: #ff6347;
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 3px;
+        cursor: pointer;
+        float: right;
+    }
+    h1{
+        color: wheat;
+    }
+    .uli {
+    list-style: none;
+    display: flex;
+    gap: 10px;
+    background: #2b7ce6;
+    height: 40px;
+    align-items: center;
+    width: 280px;
+    justify-content: center;
+    border-radius: 15px;
+    padding: 8px;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+a{
+    text-decoration: none;
+    color: black;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.home,.aboutUs,.settings{
+    width: 80px;
+    height: 40px;
+    border-radius: 12px;
+}
+a:hover{
+    background: rgba(255, 255, 255, 0.4);
+    transition: 0.5s;
+    border-radius: 12px;
+}
+</style>
+</head>
+<body>
+    <div>
+        <nav>
+            <ul class="uli">
+                <li class="home">
+                    <a href="todolist.html">Home</a>
+                </li>
+                <li class="aboutUs">
+                    <a href="aboutUs.html">About us</a>
+                </li>
+                <li class="settings">
+                    <a href="">Settings</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <h1>To-Do List</h1>
+    <input type="text" id="taskInput" placeholder="Enter task">
+    <button onclick="addTask()">Add Task</button>
+    <ul id="todoList"></ul>
+
+    <script>
+        function addTask() {
+            var taskInput = document.getElementById("taskInput");
+            var task = taskInput.value.trim();
+
+            if (task === "") {
+                alert("Please enter a task!");
+                return;
+            }
+
+            var listItem = document.createElement("li");
+            listItem.className = "todoItem";
+            listItem.textContent = task;
+
+            var removeButton = document.createElement("button");
+            removeButton.className = "removeButton";
+            removeButton.textContent = "Remove";
+            removeButton.onclick = function() {
+                listItem.remove();
+            };
+
+            listItem.appendChild(removeButton);
+
+            document.getElementById("todoList").appendChild(listItem);
+
+            taskInput.value = "";
+        }
+    </script>
+</body>
+</html>
